@@ -21,14 +21,16 @@ const JobDetails = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [activeTab, setActiveTab] = useState(tabs[0]);
 
-    const { data, isLoading, error } = useFetch(
+    const { data, isLoading, error, refetch } = useFetch(
         'job-details', {
         job_id: params.id,
     });
 
-    const onRefresh = () => {
-
-    };
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        refetch();
+        setRefreshing(false);
+    }, []);
 
     const displayTabContent = () => {
         switch (activeTab) {
@@ -47,7 +49,7 @@ const JobDetails = () => {
                     points={data[0]?.job_highlights?.Responsibilities ?? ['N/A']}
                 />
         }
-    }
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
