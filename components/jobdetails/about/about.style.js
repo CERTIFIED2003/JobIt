@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
     fontFamily: FONT.regular,
     marginVertical: SIZES.small / 1.25,
+    textAlign: "justify"
   },
 });
 
